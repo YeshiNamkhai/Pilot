@@ -136,11 +136,12 @@ export default function EffectInterface (pilot, id, node) {
     } else if (id === 'lim') {
       value = this.node.threshold.value / -20
     }
+    
+    const wet = this.node.wet ? to16(this.node.wet.value) : '0'
+    setContent(this.val_el, `${wet}${to16(value)}`)
     // end
-    if (this.node.wet) {
-      setContent(this.val_el, `${to16(this.node.wet.value)}${to16(value)}`)
+
     }
-  }
 
   // Parsers
 

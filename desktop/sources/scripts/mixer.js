@@ -170,6 +170,17 @@ export default function Mixer (pilot) {
         release: clamp(((id % 6) / 6), 0.01, 0.9)
       })
     }
+    // begin: reset
+    if (this.effects) {
+        //this.effects.equalizer.node.low.value = 0
+        //this.effects.equalizer.node.high.value = 0
+        this.effects.equalizer.node.mid.value = 0
+        this.effects.compressor.node.threshold.value = -6 
+        this.effects.volume.node.volume.value = 6 
+        this.effects.limiter.node.threshold.value = -2
+    }
+    //end
+
     // Return to Osc Presets
     this.run('0OSC8ISI;1OSC8RSW;2OSC8WTR;3OSC8QSQ;4OSC4I8Q;5OSC4R8W;6OSCTR8R;7OSCTR8I;8OSCTR4W;9OSCTR8R;AOSC4W--;BOSC4I--;COSCSI--;DOSCSW--;EOSCTR--;FOSCSQ--')
     // Return to Effects Presets
