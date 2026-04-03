@@ -67,7 +67,8 @@ The Effects are applied to all channels. The effect command format is a 3 charac
 
 #### Masters
 
-`TODO` Add the ability to change the mastering effects like compressor and volume. Coming soon!
+EQU0, COM0, VOL0, LIM0, set the mastering levels. Reset brings back initial values. 
+
 
 #### Special
 
