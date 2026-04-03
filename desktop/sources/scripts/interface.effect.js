@@ -68,6 +68,18 @@ export default function EffectInterface (pilot, id, node) {
         this.node.octaves = clamp(parseInt(data.value * 6), 0, 8)
       } else if (data.code === 'che') {
         this.node.order = clamp(parseInt(data.value * 100), 0, 8)
+      // begin: adds equalizer, compressor, volume, limiter
+      } else if (data.code === 'equ') {
+        this.node.low.value = (data.value * 20) - 10
+        this.node.mid.value = (data.value * 20) - 10
+        this.node.high.value = (data.value * 20) - 10
+      } else if (data.code === 'com') {
+        this.node.threshold.value = (data.value * -40)
+      } else if (data.code === 'vol') {
+        this.node.volume.value = (data.value * 40) - 20
+      } else if (data.code === 'lim') {
+        this.node.threshold.value = (data.value * -20)
+      // end
       } else {
         console.warn('Unknown value', this.node)
       }
@@ -114,7 +126,17 @@ export default function EffectInterface (pilot, id, node) {
     } else if (id === 'che') {
       value = this.node.order / 100
     }
-
+    // begin: adds equalizer, compressor, volume, limiter
+    else if (id === 'equ') {
+      value = (this.node.mid.value + 10) / 20
+    } else if (id === 'com') {
+      value = this.node.threshold.value / -40
+    } else if (id === 'vol') {
+      value = (this.node.volume.value + 20) / 40
+    } else if (id === 'lim') {
+      value = this.node.threshold.value / -20
+    }
+    // end
     if (this.node.wet) {
       setContent(this.val_el, `${to16(this.node.wet.value)}${to16(value)}`)
     }
