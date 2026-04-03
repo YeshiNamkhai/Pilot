@@ -67,8 +67,12 @@ The Effects are applied to all channels. The effect command format is a 3 charac
 
 #### Masters
 
-EQU0, COM0, VOL0, LIM0, set the mastering levels. Reset brings back initial values. 
+`EQU0`, `COM0`, `VOL0`, `LIM0`, 0-z to set levels, reset for initial values.
 
+dB metering ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) `-6`
+ ![#ffff00](https://placehold.co/15x15/ffff00/ffff00.png) `-18`
+  ![#00ff00](https://placehold.co/15x15/00ff00/00ff00.png) `-48`
+  ![#ffffff](https://placehold.co/15x15/ffffff/ffffff.png) `no  signal`
 
 #### Special
 
