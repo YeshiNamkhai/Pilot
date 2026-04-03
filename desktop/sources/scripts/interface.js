@@ -85,10 +85,24 @@ export default function Interface (pilot, id, node) {
 
     const elapsed = performance.now() - self.lastNote
     const max = 500
+ 
+    //begin: get signal dB turn into color
+    const db = meter.getLevel()
+    
+    let color = "0, 255, 0" // Green (Default)
 
+    if (db > -6) {
+      color = "255, 0, 0"   // Red (Clip)
+    } else if (db > -18) {
+      color = "255, 255, 0" // Yellow
+    } else if (db === -Infinity) {
+      color = "255, 255, 255" // White (No signal)
+    }
+    //end
+    
     context.beginPath()
     context.arc(2, 4, 2, 0, 2 * Math.PI, false)
-    context.fillStyle = `rgba(255,255,255,${(1 - (elapsed / max))})`
+    context.fillStyle = `rgba(${color}, ${(1 - (elapsed / max))})`
     context.fill()
     context.closePath()
   }
