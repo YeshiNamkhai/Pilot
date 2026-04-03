@@ -178,6 +178,9 @@ export default function Mixer (pilot) {
         this.effects.compressor.node.threshold.value = -6 
         this.effects.volume.node.volume.value = 6 
         this.effects.limiter.node.threshold.value = -2
+        for (const key in this.effects) {
+         this.effects[key].updateEffect({}, true) 
+       }
     }
     //end
 
