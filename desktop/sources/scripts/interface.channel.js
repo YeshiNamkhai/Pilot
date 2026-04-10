@@ -101,14 +101,21 @@ export default function ChannelInterface (pilot, id, node) {
   this.updateEnv = function (data, force = false) {
     if (pilot.animate !== true) { return }
     if (force !== true && (!data || !data.isEnv)) { return }
-    if (!this.node.envelope) { return }
-    setContent(this.env_el, `${to16(this.node.envelope.attack)}${to16(this.node.envelope.decay)}${to16(this.node.envelope.sustain)}${to16(this.node.envelope.release)}`)
+    if (this.node.envelope) { 
+      setContent(this.env_el, `${to16(this.node.envelope.attack)}${to16(this.node.envelope.decay)}${to16(this.node.envelope.sustain)}${to16(this.node.envelope.release)}`)
+    } else {
+      setContent(this.env_el, `0f00`)
+    }
   }
 
   this.updateOsc = function (data, force = false) {
     if (pilot.animate !== true) { return }
     if (force !== true && (!data || !data.isOsc)) { return }
-    setContent(this.osc_el, `${this.node.oscillator ? wavCode(this.node.oscillator._oscillator.type) : '--'}${this.node.modulation ? wavCode(this.node.modulation._oscillator.type) : '--'}`)
+    if (this.node.oscillator) {
+      setContent(this.osc_el, `${this.node.oscillator ? wavCode(this.node.oscillator._oscillator.type) : '--'}${this.node.modulation ? wavCode(this.node.modulation._oscillator.type) : '--'}`)
+    } else {
+      setContent(this.osc_el, `-▶‖-`)
+    }
   }
 
   this.randEnv = function () {

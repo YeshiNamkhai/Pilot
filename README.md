@@ -82,6 +82,21 @@ dB metering ![#f03c15](https://placehold.co/15x15/f03c15/f03c15.png) `-6`
 - `refx`, randomizes effects.
 - `reset`, reset all.
 
+### Drums
+
+The last channel ( F or 16) features a sample player with 116 drum sounds from the Roland TR-808, 
+with courtecy of [Michael Fischer](https://github.com/tidalcycles/sounds-tr808-fischer) .
+
+- BASS DRUMS (C0 - C2) - 25 samples
+- SNARES (C#2 - C#4) - 25 samples
+- CYMBALS (D4 - D6) - 25 samples
+- TOMS: LOW, MID, HI (D#6 - F7) - 15 samples
+- CONGAS: LOW, MID, HI (F#7 - G#8) - 15 samples
+- HI-HATS SECTION (A8 - D9) - [ 1 Closed, 5 Open]
+- ONE-SHOTS (D#9 - G9) - [Cowbell, Clave, Clap, Maracas, Rimshot]
+
+To use your own sample set, add audio files to the media folder and edit mapping.json to your needs.  
+
 ## Record
 
 Press **cmd/ctrl+r** to record, and press it again to stop.

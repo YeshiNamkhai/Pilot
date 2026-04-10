@@ -35,7 +35,30 @@ export default function Mixer (pilot) {
     this.channels[12] = new ChannelInterface(pilot, 12, new Tone.MembraneSynth({ 'octaves': 5, 'oscillator': { 'type': 'sine' } }))
     this.channels[13] = new ChannelInterface(pilot, 13, new Tone.MembraneSynth({ 'octaves': 10, 'oscillator': { 'type': 'sawtooth' } }))
     this.channels[14] = new ChannelInterface(pilot, 14, new Tone.MembraneSynth({ 'octaves': 15, 'oscillator': { 'type': 'triangle' } }))
-    this.channels[15] = new ChannelInterface(pilot, 15, new Tone.MembraneSynth({ 'octaves': 20, 'oscillator': { 'type': 'square' } }))
+    //this.channels[15] = new ChannelInterface(pilot, 15, new Tone.MembraneSynth({ 'octaves': 20, 'oscillator': { 'type': 'square' } }))    
+
+    // Sampler
+    const kitUrl = './mapping.json'
+    var n = 0
+    this.channels[15] = new ChannelInterface(pilot, 15, new Tone.Sampler({}))
+
+    fetch(kitUrl)
+      .then(response => response.json())
+      .then(data => {
+        const samples = data.samples
+        const baseUrl = data.config.baseUrl
+
+        for (let note in samples) {
+          const url = baseUrl + samples[note]
+          this.channels[15].node.add(note, url, () => {
+             //console.log (url)
+          })
+        }
+
+        this.channels[15].node.volume.value = -6
+        console.log(`${data.config.kitName} loaded into Sampler! `)
+      })
+      .catch(err => console.error("Sampler loading error:", err))
 
     // I
     this.effects.bitcrusher = new EffectInterface(pilot, 'bit', new Tone.BitCrusher(4))

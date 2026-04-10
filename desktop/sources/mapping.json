@@ -1,0 +1,38 @@
+{
+  "config": {
+    "baseUrl": "./media/sounds-tr808-fischer-main/",
+    "kitName": "TR-808 by Michael Fischer"
+  },
+  "samples": {
+    "C0": "bd8/BD0000.WAV", "C#0": "bd8/BD0010.WAV", "D0": "bd8/BD0025.WAV", "D#0": "bd8/BD0050.WAV", "E0": "bd8/BD0075.WAV",
+    "F0": "bd8/BD1000.WAV", "F#0": "bd8/BD1010.WAV", "G0": "bd8/BD1025.WAV", "G#0": "bd8/BD1050.WAV", "A0": "bd8/BD1075.WAV",
+    "A#0": "bd8/BD2500.WAV", "B0": "bd8/BD2510.WAV", "C1": "bd8/BD2525.WAV", "C#1": "bd8/BD2550.WAV", "D1": "bd8/BD2575.WAV",
+    "D#1": "bd8/BD5000.WAV", "E1": "bd8/BD5010.WAV", "F1": "bd8/BD5025.WAV", "F#1": "bd8/BD5050.WAV", "G1": "bd8/BD5075.WAV",
+    "G#1": "bd8/BD7500.WAV", "A1": "bd8/BD7510.WAV", "A#1": "bd8/BD7525.WAV", "B1": "bd8/BD7550.WAV", "C2": "bd8/BD7575.WAV",
+
+    "C#2": "sd8/SD0000.WAV", "D2": "sd8/SD0010.WAV", "D#2": "sd8/SD0025.WAV", "E2": "sd8/SD0050.WAV", "F2": "sd8/SD0075.WAV",
+    "F#2": "sd8/SD1000.WAV", "G2": "sd8/SD1010.WAV", "G#2": "sd8/SD1025.WAV", "A2": "sd8/SD1050.WAV", "A#2": "sd8/SD1075.WAV",
+    "B2": "sd8/SD2500.WAV", "C3": "sd8/SD2510.WAV", "C#3": "sd8/SD2525.WAV", "D3": "sd8/SD2550.WAV", "D#3": "sd8/SD2575.WAV",
+    "E3": "sd8/SD5000.WAV", "F3": "sd8/SD5010.WAV", "F#3": "sd8/SD5025.WAV", "G3": "sd8/SD5050.WAV", "G#3": "sd8/SD5075.WAV",
+    "A3": "sd8/SD7500.WAV", "A#3": "sd8/SD7510.WAV", "B3": "sd8/SD7525.WAV", "C4": "sd8/SD7550.WAV", "C#4": "sd8/SD7575.WAV",
+
+    "D4": "cy8/CY0000.WAV", "D#4": "cy8/CY0010.WAV", "E4": "cy8/CY0025.WAV", "F4": "cy8/CY0050.WAV", "F#4": "cy8/CY0075.WAV",
+    "G4": "cy8/CY1000.WAV", "G#4": "cy8/CY1010.WAV", "A4": "cy8/CY1025.WAV", "A#4": "cy8/CY1050.WAV", "B4": "cy8/CY1075.WAV",
+    "C5": "cy8/CY2500.WAV", "C#5": "cy8/CY2510.WAV", "D5": "cy8/CY2525.WAV", "D#5": "cy8/CY2550.WAV", "E5": "cy8/CY2575.WAV",
+    "F5": "cy8/CY5000.WAV", "F#5": "cy8/CY5010.WAV", "G5": "cy8/CY5025.WAV", "G#5": "cy8/CY5050.WAV", "A5": "cy8/CY5075.WAV",
+    "A#5": "cy8/CY7500.WAV", "B5": "cy8/CY7510.WAV", "C6": "cy8/CY7525.WAV", "C#6": "cy8/CY7550.WAV", "D6": "cy8/CY7575.WAV",
+
+    "D#6": "lt8/LT00.WAV", "E6": "lt8/LT10.WAV", "F6": "lt8/LT25.WAV", "F#6": "lt8/LT50.WAV", "G6": "lt8/LT75.WAV",
+    "G#6": "mt8/MT00.WAV", "A6": "mt8/MT10.WAV", "A#6": "mt8/MT25.WAV", "B6": "mt8/MT50.WAV", "C7": "mt8/MT75.WAV",
+    "C#7": "ht8/HT00.WAV", "D7": "ht8/HT10.WAV", "D#7": "ht8/HT25.WAV", "E7": "ht8/HT50.WAV", "F7": "ht8/HT75.WAV",
+
+    "F#7": "lc8/LC00.WAV", "G7": "lc8/LC10.WAV", "G#7": "lc8/LC25.WAV", "A7": "lc8/LC50.WAV", "A#7": "lc8/LC75.WAV",
+    "B7": "mc8/MC00.WAV", "C8": "mc8/MC10.WAV", "C#8": "mc8/MC25.WAV", "D8": "mc8/MC50.WAV", "D#8": "mc8/MC75.WAV",
+    "E8": "hc8/HC00.WAV", "F8": "hc8/HC10.WAV", "F#8": "hc8/HC25.WAV", "G8": "hc8/HC50.WAV", "G#8": "hc8/HC75.WAV",
+
+    "A8": "ch8/CH.WAV",
+    "A#8": "oh8/OH00.WAV", "B8": "oh8/OH10.WAV", "C9": "oh8/OH25.WAV", "C#9": "oh8/OH50.WAV", "D9": "oh8/OH75.WAV",
+
+    "D#9": "cb8/CB.WAV", "E9": "cl8/CL.WAV", "F9": "cp8/CP.WAV", "F#9": "ma8/MA.WAV", "G9": "rs8/RS.WAV"
+  }
+}
