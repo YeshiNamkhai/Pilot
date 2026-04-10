@@ -95,7 +95,7 @@ with courtecy of [Michael Fischer](https://github.com/tidalcycles/sounds-tr808-f
 - HI-HATS SECTION (A8 - D9) - [ 1 Closed, 5 Open]
 - ONE-SHOTS (D#9 - G9) - [Cowbell, Clave, Clap, Maracas, Rimshot]
 
-To use your own sample set, add audio files to the media folder and edit mapping.json to your needs.  
+To use your own sample set, add audio files to the media folder and edit [mapping.json](desktop/sources/mapping.json) to your needs.  
 
 ## Record
 
