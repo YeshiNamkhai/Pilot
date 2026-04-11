@@ -21,8 +21,8 @@ Pilot has 16 voices and 8 effects. Commands can be entered directly with the inp
 
 ### Channel
 
-- 0 to 5 is Amplitude Modulation (poly)
-- 6 to 9 is Frequency Modulation (poly)
+- 0 to 5 is **A**mplitude **M**odulation (poly)
+- 6 to 9 is **F**requency **M**odulation (poly)
 - 10 to 11 is a single oscillator, a filter and two envelopes (mono)
 - 12 to 14 is a single oscillator with an amplitude envelope and frequency ramp to emulate membrane (mono)
 
