@@ -34,7 +34,8 @@ export default function ChannelInterface (pilot, id, node) {
 
   // Run
 
-  this.run = function (msg) {
+ 
+ this.run = function (msg) {
     const channel = `${msg}`.substr(0, 1)
     if (int36(channel) === id) {
       this.operate(`${msg}`.substr(1))
@@ -60,7 +61,10 @@ export default function ChannelInterface (pilot, id, node) {
   this.playNote = function (data) {
     if (isNaN(data.octave)) { return }
     if (OCTAVE.indexOf(data.note) < 0) { console.warn(`Unknown Note`); return }
-    if (this.lastNote && performance.now() - this.lastNote < 100) { return }
+
+    const isPoly = this.node instanceof Tone.PolySynth;
+    if (!isPoly && this.lastNote && performance.now() - this.lastNote < 100) { return }
+    
     const name = `${data.note}${data.sharp}${data.octave}`
     const length = clamp(data.length, 0.1, 0.9)
     this.node.triggerAttackRelease(name, length, '+0', data.velocity)
@@ -68,24 +72,49 @@ export default function ChannelInterface (pilot, id, node) {
   }
 
   this.setEnv = function (data) {
-    if (this.lastEnv && performance.now() - this.lastEnv < 100) { return }
-    if (!this.node.envelope) { return }
+    const isPoly = this.node instanceof Tone.PolySynth;
+    if (!isPoly && this.lastEnv && performance.now() - this.lastEnv < 100) { return }
+    if (!isPoly && !this.node.envelope) { return }
     if (id > 11) { return }
-    if (!isNaN(data.attack)) { this.node.envelope.attack = clamp(data.attack, 0.01, 1.0) }
-    if (!isNaN(data.decay)) { this.node.envelope.decay = clamp(data.decay, 0.01, 1.0) }
-    if (!isNaN(data.sustain)) { this.node.envelope.sustain = clamp(data.sustain, 0.01, 1.0) }
-    if (!isNaN(data.release)) { this.node.envelope.release = clamp(data.release, 0.01, 1.0) }
+
+    if (!isNaN(data.attack)) { 
+      const val = clamp(data.attack, 0.01, 1.0);
+      isPoly ? this.node.set("envelope.attack", val) : this.node.envelope.attack = val;
+    }
+    if (!isNaN(data.decay)) { 
+      const val = clamp(data.decay, 0.01, 1.0);
+      isPoly ? this.node.set("envelope.decay", val) : this.node.envelope.decay = val;
+    }
+    if (!isNaN(data.sustain)) { 
+      const val = clamp(data.sustain, 0.01, 1.0);
+      isPoly ? this.node.set("envelope.sustain", val) : this.node.envelope.sustain = val;
+    }
+    if (!isNaN(data.release)) { 
+      const val = clamp(data.release, 0.01, 1.0);
+      isPoly ? this.node.set("envelope.release", val) : this.node.envelope.release = val;
+    }
     this.lastEnv = performance.now()
     this.updateEnv(data)
   }
 
   this.setOsc = function (data) {
-    if (this.lastOsc && performance.now() - this.lastOsc < 100) { return }
-    if (data.wav && this.node.oscillator) {
-      this.node.oscillator._oscillator.set('type', data.wav)
+    const isPoly = this.node instanceof Tone.PolySynth;
+    if (!isPoly && this.lastOsc && performance.now() - this.lastOsc < 100) { return }
+
+    if (data.wav) {
+      if (isPoly) {
+        this.node.set("oscillator.type", data.wav);
+      } else if (this.node.oscillator) {
+        this.node.oscillator._oscillator.set('type', data.wav);
+      }
     }
-    if (data.mod && this.node.modulation) {
-      this.node.modulation._oscillator.set('type', data.mod)
+    
+    if (data.mod) {
+      if (isPoly) {
+        this.node.set("modulation.type", data.mod);
+      } else if (this.node.modulation) {
+        this.node.modulation._oscillator.set('type', data.mod);
+      }
     }
     this.lastOsc = performance.now()
     this.updateOsc(data)
@@ -101,8 +130,12 @@ export default function ChannelInterface (pilot, id, node) {
   this.updateEnv = function (data, force = false) {
     if (pilot.animate !== true) { return }
     if (force !== true && (!data || !data.isEnv)) { return }
-    if (this.node.envelope) { 
-      setContent(this.env_el, `${to16(this.node.envelope.attack)}${to16(this.node.envelope.decay)}${to16(this.node.envelope.sustain)}${to16(this.node.envelope.release)}`)
+    
+    const isPoly = this.node instanceof Tone.PolySynth;
+    const env = isPoly ? this.node.get("envelope").envelope : this.node.envelope;
+
+    if (env) { 
+      setContent(this.env_el, `${to16(env.attack)}${to16(env.decay)}${to16(env.sustain)}${to16(env.release)}`)
     } else {
       setContent(this.env_el, `0f00`)
     }
@@ -111,8 +144,24 @@ export default function ChannelInterface (pilot, id, node) {
   this.updateOsc = function (data, force = false) {
     if (pilot.animate !== true) { return }
     if (force !== true && (!data || !data.isOsc)) { return }
-    if (this.node.oscillator) {
-      setContent(this.osc_el, `${this.node.oscillator ? wavCode(this.node.oscillator._oscillator.type) : '--'}${this.node.modulation ? wavCode(this.node.modulation._oscillator.type) : '--'}`)
+
+    const isPoly = this.node instanceof Tone.PolySynth;
+    let oscType = null;
+    let modType = null;
+
+    if (isPoly) {
+      const params = this.node.get();
+      if (params) {
+        oscType = params.oscillator ? params.oscillator.type : null;
+        modType = params.modulation ? params.modulation.type : null;
+      }
+    } else {
+      oscType = this.node.oscillator ? this.node.oscillator._oscillator.type : null;
+      modType = this.node.modulation ? this.node.modulation._oscillator.type : null;
+    }
+
+    if (oscType) {
+      setContent(this.osc_el, `${wavCode(oscType)}${modType ? wavCode(modType) : '--'}`)
     } else {
       setContent(this.osc_el, `-▶‖-`)
     }
