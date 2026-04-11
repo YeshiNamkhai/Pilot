@@ -17,9 +17,14 @@ npm start
 
 ## Commands
 
-Pilot has 16 voices, and 8 effects. Commands can be entered directly with the input bar, or through UDP via the port `49161`. You can send multiple commands at once by using the `;` character. For example, `03C;13E` will play a `C3` and `E3` chord.
+Pilot has 16 voices and 8 effects. Commands can be entered directly with the input bar, or through UDP via the port `49161`. You can send multiple commands at once by using the `;` character. For example, `03C;13E` will play a `C3` and `E3` chord.
 
 ### Channel
+
+- 0 to 5 is Amplitude Modulation (poly)
+- 6 to 9 is Frequency Modulation (poly)
+- 10 to 11 is a single oscillator, a filter and two envelopes (mono)
+- 12 to 14 is a single oscillator with an amplitude envelope and frequency ramp to emulate membrane (mono)
 
 #### Play
 
